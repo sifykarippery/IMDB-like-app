@@ -6,3 +6,7 @@ Sample of imdb application using flask and postgresql
 * Database: postgres
 * Language: python 3
 * Web Framework: flask
+
+
+
+keep updating readme
