@@ -1,8 +1,6 @@
 username:- imdb_user
 password:- Password@123
 
-Connection String:- "postgres://imdb_user:Password@123@localhost:5432/IMDBDev";
-
 
 CREATE ROLE imdb_user LOGIN
   ENCRYPTED PASSWORD 'md5e96ff20676ddae46e80280c8bf4a111a'
