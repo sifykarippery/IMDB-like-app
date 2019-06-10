@@ -11,6 +11,7 @@ db = SQLAlchemy(app)
 
 from models import Profile, Movie
 
+
 @app.route("/")
 def healthcheck():
     return "Site is healthy!"
