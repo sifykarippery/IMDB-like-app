@@ -8,7 +8,7 @@ class Config(object):
     TESTING = False
     CSRF_ENABLED = True
     SECRET_KEY = 'this-really-needs-to-be-changed'
-    SQLALCHEMY_DATABASE_URI = os.environ['IMDB_DATABASE_URL']
+    SQLALCHEMY_DATABASE_URI = 'postgres://imdb_user:Password@123@localhost:5432/IMDBDev'
 
 
 class ProductionConfig(Config):

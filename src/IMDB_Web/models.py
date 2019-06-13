@@ -5,14 +5,13 @@ from sqlalchemy import Sequence
 class Profile(db.Model):
     __tablename__ = 'Profiles'
 
-    id = db.Column(db.Integer, Sequence('profiles_id_seq'), primary_key=True)
+    id = db.Column(db.Integer, Sequence('Profiles_id_seq'), primary_key=True)
     firstname = db.Column(db.String())
     lastname = db.Column(db.String())
     dob = db.Column(db.Date())
     address = db.Column(db.String())
 
-    def __init__(self, id, firstname, lastname, dob, address):
-        self.id = id
+    def __init__(self, firstname, lastname, dob, address):
         self.firstname = firstname
         self.lastname = lastname
         self.dob = dob
@@ -34,15 +33,14 @@ class Profile(db.Model):
 class Movie(db.Model):
     __tablename__ = 'Movies'
 
-    id = db.Column(db.Integer, Sequence('movies_id_seq'), primary_key=True)
+    id = db.Column(db.Integer, Sequence('Movies_id_seq'), primary_key=True)
     moviename = db.Column(db.String())
     releasedate = db.Column(db.Date())
     budget = db.Column(db.Float())
     collection = db.Column(db.Float())
     description = db.Column(db.Text())
 
-    def __init__(self, id, moviename, releasedate, budget, collection, description):
-        self.id = id
+    def __init__(self, moviename, releasedate, budget, collection, description):
         self.moviename = moviename
         self.releasedate = releasedate
         self.budget = budget
@@ -59,19 +57,18 @@ class Movie(db.Model):
             'releasedate': self.releasedate,
             'budget': self.budget,
             'collection': self.collection,
-            'self.description': self.description
+            'description': self.description
         }
 
 
 class Actor(db.Model):
     __tablename__ = 'Actors'
 
-    id = db.Column(db.Integer, Sequence('actors_id_seq'), primary_key=True)
+    id = db.Column(db.Integer, Sequence('Actors_id_seq'), primary_key=True)
     profileid = db.Column(db.Integer, db.ForeignKey('Profiles.id', ondelete="CASCADE"))
     note = db.Column(db.Text())
 
-    def __init__(self, id, profileid, note):
-        self.id = id
+    def __init__(self, profileid, note):
         self.profileid = profileid
         self.note = note
 
@@ -89,12 +86,11 @@ class Actor(db.Model):
 class MovieActor(db.Model):
     __tablename__ = 'MovieActors'
 
-    id = db.Column(db.Integer, Sequence('movieactors_id_seq'), primary_key=True)
+    id = db.Column(db.Integer, Sequence('MovieActors_id_seq'), primary_key=True)
     actorid = db.Column(db.Integer, db.ForeignKey('Actors.id', ondelete="CASCADE"))
     movieid = db.Column(db.Integer, db.ForeignKey('Movies.id', ondelete="CASCADE"))
 
-    def __init__(self, id, actorid, movieid):
-        self.id = id
+    def __init__(self, actorid, movieid):
         self.actorid = actorid
         self.movieid = movieid
 
@@ -112,12 +108,11 @@ class MovieActor(db.Model):
 class Director(db.Model):
     __tablename__ = 'Directors'
 
-    id = db.Column(db.Integer, Sequence('directors_id_seq'), primary_key=True)
+    id = db.Column(db.Integer, Sequence('Directors_id_seq'), primary_key=True)
     profileid = db.Column(db.Integer, db.ForeignKey('Profiles.id', ondelete="CASCADE"))
     note = db.Column(db.Text())
 
-    def __init__(self, id, profileid, note):
-        self.id = id
+    def __init__(self, profileid, note):
         self.profileid = profileid
         self.note = note
 
@@ -135,12 +130,11 @@ class Director(db.Model):
 class MovieDirector(db.Model):
     __tablename__ = 'MovieDirectors'
 
-    id = db.Column(db.Integer, Sequence('moviedirectors_id_seq'), primary_key=True)
+    id = db.Column(db.Integer, Sequence('MovieDirectors_id_seq'), primary_key=True)
     directorid = db.Column(db.Integer, db.ForeignKey('Directors.id', ondelete="CASCADE"))
     movieid = db.Column(db.Integer, db.ForeignKey('Movies.id', ondelete="CASCADE"))
 
-    def __init__(self, id, directorid, movieid):
-        self.id = id
+    def __init__(self, directorid, movieid):
         self.directorid = directorid
         self.movieid = movieid
 
@@ -158,12 +152,11 @@ class MovieDirector(db.Model):
 class Producer(db.Model):
     __tablename__ = 'Producers'
 
-    id = db.Column(db.Integer, Sequence('producers_id_seq'), primary_key=True)
+    id = db.Column(db.Integer, Sequence('Producers_id_seq'), primary_key=True)
     profileid = db.Column(db.Integer, db.ForeignKey('Profiles.id', ondelete="CASCADE"))
     note = db.Column(db.Text())
 
-    def __init__(self, id, profileid, note):
-        self.id = id
+    def __init__(self, profileid, note):
         self.profileid = profileid
         self.note = note
 
@@ -181,12 +174,11 @@ class Producer(db.Model):
 class MovieProducer(db.Model):
     __tablename__ = 'MovieProducers'
 
-    id = db.Column(db.Integer, Sequence('movieproducers_id_seq'), primary_key=True)
+    id = db.Column(db.Integer, Sequence('MovieProducers_id_seq'), primary_key=True)
     producerid = db.Column(db.Integer, db.ForeignKey('Producers.id', ondelete="CASCADE"))
     movieid = db.Column(db.Integer, db.ForeignKey('Movies.id', ondelete="CASCADE"))
 
-    def __init__(self, id, producerid, movieid):
-        self.id = id
+    def __init__(self, producerid, movieid):
         self.producerid = producerid
         self.movieid = movieid
 
